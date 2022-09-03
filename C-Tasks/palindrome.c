@@ -48,10 +48,5 @@ int is_palindrome(char *text)
 			break;
 		}
 	}
-	if (palindrome == 1)
-		return 1;
-	else
-		return 0;
-
-	return 0;
+	return (palindrome);
 }

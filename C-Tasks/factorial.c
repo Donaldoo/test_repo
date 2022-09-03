@@ -10,7 +10,7 @@ void main()
 {
 	int n;
 
-	printf("Enter a number: ");
+	printf("Enter a positive number: ");
 	scanf("%d", &n);
 
 	printf("Factorial of number %d is %d\n", n, recursive_factorial(n));
@@ -24,8 +24,8 @@ void main()
  */
 int recursive_factorial(int n)
 {
-	if (n > 1)
-		return (n*recursive_factorial(n - 1));
-	else
+	if (n == 1 || n == 0)
 		return 1;
+	else
+		return (n * recursive_factorial(n - 1));
 }
