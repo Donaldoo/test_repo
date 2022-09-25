@@ -3,8 +3,24 @@ import random
 
 class Card:
     def __init__(self, suit, value):
-        self.suit = suit
-        self.value = value
+        self.__suit = suit
+        self.__value = value
+
+    @property
+    def suit(self):
+        return self.__suit
+
+    @property
+    def value(self):
+        return self.__value
+
+    @suit.setter
+    def suit(self, suit):
+        self.__suit = suit
+
+    @value.setter
+    def value(self, value):
+        self.__value = value
 
     def showCard(self):
         print("{} {}".format(self.value, self.suit))
@@ -23,8 +39,16 @@ class Deck:
     suits = ["\u2666", "\u2665", "\u2663", "\u2660"]
 
     def __init__(self):
-        self.deck = []
+        self.__deck = []
         self.build()
+
+    @property
+    def deck(self):
+        return self.__deck
+
+    @deck.setter
+    def deck(self, deck):
+        self.__deck = deck
 
     def build(self):
         for s in self.suits:
@@ -44,9 +68,33 @@ class Deck:
 
 class Player:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
-        self.hand = []
+        self.__name = name
+        self.__age = age
+        self.__hand = []
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def age(self):
+        return self.__age
+
+    @property
+    def hand(self):
+        return self.__hand
+
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    @age.setter
+    def age(self, age):
+        self.__age = age
+
+    @hand.setter
+    def hand(self, hand):
+        self.__hand == hand
 
     def draw(self, deck):
         self.hand.append(deck.drawCard())
@@ -68,25 +116,25 @@ class Player:
 deck = Deck()
 deck.shuffle()
 
-p1 = Player("p1", 50)
-p2 = Player("p2", 51)
+bob = Player("Bob", 50)
+ben = Player("Ben", 51)
 
 for i in range(5):
-    p1.draw(deck)
-    p2.draw(deck)
+    bob.draw(deck)
+    ben.draw(deck)
 
-print("Player 1:")
-p1.showHand()
-p1_points = p1.evaluate_points()
+print("Bob:")
+bob.showHand()
+bob_points = bob.evaluate_points()
 
-print("\nPlayer 2:")
-p2.showHand()
-p2_points = p2.evaluate_points()
+print("\nBen:")
+ben.showHand()
+ben_points = ben.evaluate_points()
 
-if p1_points > p2_points:
-    print("\nPlayer 1 wins")
-elif p2_points > p1_points:
-    print("\nPlayer 2 wins")
+if bob_points > ben_points:
+    print("\nBob wins")
+elif ben_points > bob_points:
+    print("\nBen wins")
 else:
     print("\nDraw")
 
